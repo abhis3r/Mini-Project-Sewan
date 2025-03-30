@@ -34,37 +34,6 @@ app.post("/login",(req,res)=>{
 })
 
 
-
-
-
-
-
-var nodemailer = require('nodemailer');
-
-var transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: 'abhis3r@gmail.com',
-    pass: 'xfernqbakgaebowf'
-  }
-});
-
-var mailOptions = {
-  from: 'abhis3r@gmail.com',
-  to: 'photoss3r@gmail.com',
-  subject: 'Sending Email using Node.js',
-  text: 'That was easy!'
-};
-
-transporter.sendMail(mailOptions, function(error, info){
-  if (error) {
-    console.log(error);
-  } else {
-    console.log('Email sent: ' + info.response);
-  }
-});
-
-
 app.listen(3001,()=>{
     console.log("server is running");
 })
