@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
-function Login() {
+function Blogin() {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const [error, setError] = useState("");
@@ -13,11 +13,11 @@ function Login() {
     const handleSubmit = (e) => {
         e.preventDefault();
         setError(""); // Clear previous errors
-        axios.post('http://localhost:3001/login', { email, password })
+        axios.post('http://localhost:3001/bloodcentrelogin', { email, password })
             .then(res => {
                 console.log(res);
                 if (res.data === "Success") {
-                    navigate('/home');
+                    navigate('/bhome');
                 } else {
                     setError("Invalid email or password");
                 }
@@ -35,7 +35,7 @@ function Login() {
     return (
         <div className="d-flex justify-content-center align-items-center bg-secondary vh-100">
             <div className="bg-white p-3 rounded w-25">
-                <h2>Donor Login</h2>
+                <h2>BloodCenter Login</h2>
                 {error && (
                     <div className="alert alert-danger" role="alert">
                         {error}
@@ -73,13 +73,9 @@ function Login() {
                         Login
                     </button>
                 </form>
-                <p>Don't have an account?</p>
-                <Link to='/register' className="btn btn-default border w-100 bg-light rounded-0 text-decoration-none">
-                    Register
-                </Link>
             </div>
         </div>
     )
 }
 
-export default Login;
+export default Blogin;

@@ -1,7 +1,10 @@
 const express=require('express');
 const mongoose=require('mongoose');
 const cors = require('cors');
-const UserModel=require('./models/users'); 
+const { UserModel, CentreModel ,BloodCentreModel} = require('./models/users');
+
+console.log("CentreModel:", CentreModel);
+console.log("UserModel:", UserModel);
 
 const app=express();
 app.use(express.json());
@@ -31,6 +34,26 @@ app.post("/login",(req,res)=>{
             res.json("user not found")
         }
     })
+})
+
+app.post("/bloodcentrelogin",(req,res)=>{
+  const{email,password}=req.body;
+  CentreModel.findOne({email:email})
+  .then(user=>{
+      console.log("User from DB:", user); // Logs the user object from the database
+      console.log("Password from request:", password); // Logs the password from the request
+
+
+      if(user){
+          if(user.password===password){
+              res.json("Success");
+          } else{
+              res.json("wrong password")
+          }
+      } else{
+          res.json("user not found")
+      }
+  })
 })
 
 
